@@ -25,6 +25,18 @@ def get_species_images():
     except Exception as e:
         return {"error": str(e)}
 
+@app.get("/species-names")
+def get_species_names():
+    try:
+        with open(api_json_name) as json_file:
+            species_data = json.load(json_file)
+            
+        species_names = list(species_data.keys())
+        
+        return species_names
+    except Exception as e:
+        return {"error": str(e)}
+
 @app.get("/species-images/{species_name}")
 def get_species_images(species_name: str):
     try:
